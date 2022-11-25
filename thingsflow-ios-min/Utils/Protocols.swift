@@ -12,10 +12,12 @@ protocol ViewModelType {
     associatedtype Input
     associatedtype Output
     
-    var intput: Input 
-    var output: Output
+    var input: Input { get set }
+    var output: Output { get set }
     
-    var disposeBag: DisposeBag
+    var disposeBag: DisposeBag { get set }
 }
 
-
+protocol Pixel {
+    var multiplierValue: CGFloat { get }
+}

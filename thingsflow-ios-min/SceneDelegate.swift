@@ -19,6 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         let issueListViewController = IssueListViewController()
+        issueListViewController.viewModel = IssueListViewModel()
         window?.rootViewController = issueListViewController
     }
 
