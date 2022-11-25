@@ -32,6 +32,8 @@
 		87F8EE78293097BB003999A5 /* IssueListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F8EE77293097BA003999A5 /* IssueListHeaderView.swift */; };
 		87F8EE7A293099C1003999A5 /* CGSize+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F8EE79293099C1003999A5 /* CGSize+Ex.swift */; };
 		87F8EE7C29309DAD003999A5 /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F8EE7B29309DAD003999A5 /* IssueDetailViewController.swift */; };
+		87F8EE7E2930AD47003999A5 /* DictData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F8EE7D2930AD47003999A5 /* DictData.swift */; };
+		87F8EE802930AE4C003999A5 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F8EE7F2930AE4C003999A5 /* Const.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		87F8EE77293097BA003999A5 /* IssueListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListHeaderView.swift; sourceTree = "<group>"; };
 		87F8EE79293099C1003999A5 /* CGSize+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Ex.swift"; sourceTree = "<group>"; };
 		87F8EE7B29309DAD003999A5 /* IssueDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
+		87F8EE7D2930AD47003999A5 /* DictData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictData.swift; sourceTree = "<group>"; };
+		87F8EE7F2930AE4C003999A5 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,7 @@
 				87F8EE61293074EC003999A5 /* Size.swift */,
 				87F8EE632930750D003999A5 /* Font.swift */,
 				87F8EE6729307E2D003999A5 /* Api.swift */,
+				87F8EE7F2930AE4C003999A5 /* Const.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 				87F8EE6C29308022003999A5 /* Owner.swift */,
 				87F8EE6E293081F2003999A5 /* Info.swift */,
 				87F8EE7229308A10003999A5 /* Issue.swift */,
+				87F8EE7D2930AD47003999A5 /* DictData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -312,6 +318,7 @@
 				87F8EE6B29307F64003999A5 /* Repo.swift in Sources */,
 				87F8EE7329308A10003999A5 /* Issue.swift in Sources */,
 				87F8EE78293097BB003999A5 /* IssueListHeaderView.swift in Sources */,
+				87F8EE802930AE4C003999A5 /* Const.swift in Sources */,
 				87F8EE572930719E003999A5 /* IssueListViewModel.swift in Sources */,
 				87F8EE6F293081F2003999A5 /* Info.swift in Sources */,
 				87F8EE7129308968003999A5 /* IssuListViewSection.swift in Sources */,
@@ -327,6 +334,7 @@
 				87F8EE752930901C003999A5 /* Array+Ex.swift in Sources */,
 				87F8EE7C29309DAD003999A5 /* IssueDetailViewController.swift in Sources */,
 				87F8EE60293074CE003999A5 /* SnapKit+Ex.swift in Sources */,
+				87F8EE7E2930AD47003999A5 /* DictData.swift in Sources */,
 				87F8EE4129306E50003999A5 /* SceneDelegate.swift in Sources */,
 				87F8EE5E293073FD003999A5 /* IssueListViewCell.swift in Sources */,
 			);

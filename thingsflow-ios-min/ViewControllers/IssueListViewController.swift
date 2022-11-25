@@ -78,6 +78,8 @@ extension IssueListViewController {
                 self.view.backgroundColor = .white
                 self.setViewLayout()
                 self.setDelegates()
+                
+                viewModel.input.checkLastData.onNext(())
             })
             .disposed(by: self.disposeBag)
         
@@ -135,6 +137,10 @@ extension IssueListViewController {
                         if case let .issue(item) = data { return item }
                         else { return nil }
                     }.compactMap { $0 }
+                    
+                    let dictData = DictData(repo: self.repoData, issues: self.issueArr)
+                    viewModel.input.setData.onNext(dictData)
+                    
                     return section
                 case .failure(let statusCode):
                     self.errorControl(statusCode: statusCode)
