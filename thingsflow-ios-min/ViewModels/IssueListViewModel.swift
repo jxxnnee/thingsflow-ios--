@@ -71,7 +71,10 @@ class IssueListViewModel: ViewModelType {
                     
                     switch res.result {
                     case .success(let items):
-                        let section = IssueListViewSection(items: items)
+                        var cells = items.map(IssueListViewSection.Item.issue)
+                        cells.insert(.logo, at: 4)
+                        
+                        let section = IssueListViewSection.Model.init(model: 0, items: cells)
                         self.output.issues.accept(.success(section))
                     case .failure(let err):
                         print(err)

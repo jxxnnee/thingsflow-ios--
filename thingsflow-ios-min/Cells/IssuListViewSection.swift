@@ -9,18 +9,11 @@ import UIKit
 import RxDataSources
 
 struct IssueListViewSection {
-    var items: [Issue]
+    typealias Model = SectionModel<Int, Item>
     
-    init(items: [Issue]) {
-        self.items = items
+    enum Item {
+        case issue(Issue)
+        case logo
     }
 }
 
-extension IssueListViewSection: SectionModelType {
-    typealias Item = Issue
-    
-    init(original: IssueListViewSection, items: [Issue]) {
-        self = original
-        self.items = items
-    }
-}

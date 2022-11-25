@@ -26,9 +26,14 @@ class IssueListViewController: UIViewController {
         $0.estimatedRowHeight = 100.0
     }
     fileprivate let indicatorView = UIActivityIndicatorView()
-    fileprivate let dataSource = RxTableViewSectionedReloadDataSource<IssueListViewSection>(configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
+    fileprivate let dataSource = RxTableViewSectionedReloadDataSource<IssueListViewSection.Model>(configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
         let cell: IssueListViewCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.issue = item
+        switch item {
+        case .issue(let issue):
+            cell.issue = issue
+        case .logo:
+            cell.setLogo()
+        }
         
         return cell
     })
@@ -98,12 +103,12 @@ extension IssueListViewController {
             .disposed(by: self.disposeBag)
         
         viewModel.output.issues
-            .map { [weak self] result -> IssueListViewSection? in
+            .map { [weak self] result -> IssueListViewSection.Model? in
                 guard let self = self else { return nil }
                 
                 switch result {
                 case .success(let section):
-                    guard let section = section as? IssueListViewSection else {
+                    guard let section = section as? IssueListViewSection.Model else {
                         self.errorAlertView(title: "Error", message: "캐스팅 에러입니다.")
                         return nil
                     }
