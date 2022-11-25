@@ -35,17 +35,17 @@ class IssueListViewCell: UITableViewCell {
     }
     
     public func setLogo() {
+        let logoSize = CGSize(wp: 335, hp: 58)
         self.contentView.addSubview(self.logoView)
         self.logoView.snp.makeConstraints { make in
-            make.top.bottom.leading.trailing.equalTo(self.contentView).inset(pixel: 20)
-            make.width.equalTo(pixel: 355.0)
-            make.height.equalTo(pixel: 62)
+            make.size.equalTo(logoSize)
+            make.top.bottom.leading.trailing.equalTo(self.contentView).inset(pixel: 15)
         }
     }
     fileprivate func setViewLayout() {
         self.contentView.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { make in
-            make.top.bottom.leading.trailing.equalTo(self.contentView).inset(pixel: 20)
+            make.top.bottom.leading.trailing.equalTo(self.contentView).inset(pixel: 15)
         }
     }
     

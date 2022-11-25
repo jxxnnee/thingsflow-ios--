@@ -14,12 +14,14 @@ import SnapKit
 
 class IssueListViewController: UIViewController {
     // MARK: Fileprivate
+    fileprivate var repoData = Repo()
     fileprivate let searchButton = UIButton().then {
         $0.setTitleColor(.link, for: .normal)
         $0.setTitle("Search", for: .normal)
     }
     fileprivate let tableView = UITableView(frame: .zero, style: .grouped).then {
         $0.register(IssueListViewCell.self)
+        $0.register(IssueListHeaderView.self)
         $0.showsVerticalScrollIndicator = false
         $0.backgroundColor = .clear
         $0.rowHeight = UITableView.automaticDimension
@@ -28,6 +30,8 @@ class IssueListViewController: UIViewController {
     fileprivate let indicatorView = UIActivityIndicatorView()
     fileprivate let dataSource = RxTableViewSectionedReloadDataSource<IssueListViewSection.Model>(configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
         let cell: IssueListViewCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.selectionStyle = .none
+        
         switch item {
         case .issue(let issue):
             cell.issue = issue
@@ -44,7 +48,7 @@ class IssueListViewController: UIViewController {
             guard let viewModel = viewModel else {
                 return
             }
-
+            
             self.bind(viewModel: viewModel)
         }
     }
@@ -70,6 +74,7 @@ extension IssueListViewController {
                 
                 self.view.backgroundColor = .white
                 self.setViewLayout()
+                self.setDelegates()
             })
             .disposed(by: self.disposeBag)
         
@@ -94,6 +99,7 @@ extension IssueListViewController {
                         return
                     }
                     
+                    self.repoData = repo
                     let info = Info(organization: repo.owner.login, repository: repo.name)
                     viewModel.input.getRepoIssues.onNext(info)
                 case .failure(let statusCode):
@@ -131,13 +137,21 @@ extension IssueListViewController {
 
 
 extension IssueListViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView: IssueListHeaderView = tableView.dequeueReusableHeaderFooterView()
+        headerView.title = self.repoData.fullName
+        
+        return headerView
+    }
 }
 
 
 
 
 extension IssueListViewController {
+    fileprivate func setDelegates() {
+        self.tableView.delegate = self
+    }
     fileprivate func setViewLayout() {
         self.view.addSubview(self.searchButton)
         self.searchButton.snp.makeConstraints { make in
