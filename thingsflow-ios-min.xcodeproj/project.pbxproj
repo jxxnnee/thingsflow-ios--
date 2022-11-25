@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F008A7A249437BB2D536F94 /* Pods_thingsflow_ios_min.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D777F9FE2C625E7BFA335BF /* Pods_thingsflow_ios_min.framework */; };
 		87F8EE3F29306E50003999A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F8EE3E29306E50003999A5 /* AppDelegate.swift */; };
 		87F8EE4129306E50003999A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F8EE4029306E50003999A5 /* SceneDelegate.swift */; };
 		87F8EE4329306E50003999A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F8EE4229306E50003999A5 /* ViewController.swift */; };
@@ -16,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3DCE1D22762757B84A7756D0 /* Pods-thingsflow-ios-min.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-thingsflow-ios-min.debug.xcconfig"; path = "Target Support Files/Pods-thingsflow-ios-min/Pods-thingsflow-ios-min.debug.xcconfig"; sourceTree = "<group>"; };
+		4D777F9FE2C625E7BFA335BF /* Pods_thingsflow_ios_min.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_thingsflow_ios_min.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		82D89C851C4EC85685FED226 /* Pods-thingsflow-ios-min.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-thingsflow-ios-min.release.xcconfig"; path = "Target Support Files/Pods-thingsflow-ios-min/Pods-thingsflow-ios-min.release.xcconfig"; sourceTree = "<group>"; };
 		87F8EE3B29306E50003999A5 /* thingsflow-ios-min.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "thingsflow-ios-min.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87F8EE3E29306E50003999A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87F8EE4029306E50003999A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F008A7A249437BB2D536F94 /* Pods_thingsflow_ios_min.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D2CFFC51F387DEDCD54103D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4D777F9FE2C625E7BFA335BF /* Pods_thingsflow_ios_min.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		87F8EE3229306E50003999A5 = {
 			isa = PBXGroup;
 			children = (
 				87F8EE3D29306E50003999A5 /* thingsflow-ios-min */,
 				87F8EE3C29306E50003999A5 /* Products */,
+				F7D2CF92C71FE17FA11FC5CD /* Pods */,
+				7D2CFFC51F387DEDCD54103D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +82,16 @@
 			path = "thingsflow-ios-min";
 			sourceTree = "<group>";
 		};
+		F7D2CF92C71FE17FA11FC5CD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3DCE1D22762757B84A7756D0 /* Pods-thingsflow-ios-min.debug.xcconfig */,
+				82D89C851C4EC85685FED226 /* Pods-thingsflow-ios-min.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 87F8EE4F29306E54003999A5 /* Build configuration list for PBXNativeTarget "thingsflow-ios-min" */;
 			buildPhases = (
+				7EC6952FABDD1A5A4FC3FB75 /* [CP] Check Pods Manifest.lock */,
 				87F8EE3729306E50003999A5 /* Sources */,
 				87F8EE3829306E50003999A5 /* Frameworks */,
 				87F8EE3929306E50003999A5 /* Resources */,
+				7CB9258CBD7E8F76D1DE0541 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7CB9258CBD7E8F76D1DE0541 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-thingsflow-ios-min/Pods-thingsflow-ios-min-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-thingsflow-ios-min/Pods-thingsflow-ios-min-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-thingsflow-ios-min/Pods-thingsflow-ios-min-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7EC6952FABDD1A5A4FC3FB75 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-thingsflow-ios-min-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		87F8EE3729306E50003999A5 /* Sources */ = {
@@ -282,6 +351,7 @@
 		};
 		87F8EE5029306E54003999A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DCE1D22762757B84A7756D0 /* Pods-thingsflow-ios-min.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -310,6 +380,7 @@
 		};
 		87F8EE5129306E54003999A5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82D89C851C4EC85685FED226 /* Pods-thingsflow-ios-min.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
