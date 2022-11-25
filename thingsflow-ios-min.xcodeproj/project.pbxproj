@@ -31,6 +31,7 @@
 		87F8EE752930901C003999A5 /* Array+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F8EE742930901C003999A5 /* Array+Ex.swift */; };
 		87F8EE78293097BB003999A5 /* IssueListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F8EE77293097BA003999A5 /* IssueListHeaderView.swift */; };
 		87F8EE7A293099C1003999A5 /* CGSize+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F8EE79293099C1003999A5 /* CGSize+Ex.swift */; };
+		87F8EE7C29309DAD003999A5 /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F8EE7B29309DAD003999A5 /* IssueDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		87F8EE742930901C003999A5 /* Array+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ex.swift"; sourceTree = "<group>"; };
 		87F8EE77293097BA003999A5 /* IssueListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListHeaderView.swift; sourceTree = "<group>"; };
 		87F8EE79293099C1003999A5 /* CGSize+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Ex.swift"; sourceTree = "<group>"; };
+		87F8EE7B29309DAD003999A5 /* IssueDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				87F8EE4229306E50003999A5 /* IssueListViewController.swift */,
+				87F8EE7B29309DAD003999A5 /* IssueDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				87F8EE3F29306E50003999A5 /* AppDelegate.swift in Sources */,
 				87F8EE7A293099C1003999A5 /* CGSize+Ex.swift in Sources */,
 				87F8EE752930901C003999A5 /* Array+Ex.swift in Sources */,
+				87F8EE7C29309DAD003999A5 /* IssueDetailViewController.swift in Sources */,
 				87F8EE60293074CE003999A5 /* SnapKit+Ex.swift in Sources */,
 				87F8EE4129306E50003999A5 /* SceneDelegate.swift in Sources */,
 				87F8EE5E293073FD003999A5 /* IssueListViewCell.swift in Sources */,

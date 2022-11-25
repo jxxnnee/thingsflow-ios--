@@ -11,10 +11,13 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import SnapKit
+import CoreMIDI
 
 class IssueListViewController: UIViewController {
     // MARK: Fileprivate
     fileprivate var repoData = Repo()
+    fileprivate var issueArr: [Issue] = []
+    
     fileprivate let searchButton = UIButton().then {
         $0.setTitleColor(.link, for: .normal)
         $0.setTitle("Search", for: .normal)
@@ -78,6 +81,14 @@ extension IssueListViewController {
             })
             .disposed(by: self.disposeBag)
         
+        self.rx.viewWillAppear
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+            })
+            .disposed(by: self.disposeBag)
+        
         self.searchButton.rx.tap
             .throttle(.milliseconds(500), scheduler: MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] in
@@ -120,6 +131,10 @@ extension IssueListViewController {
                     }
                     
                     self.stopIndicator()
+                    self.issueArr = section.items.map { data -> Issue? in
+                        if case let .issue(item) = data { return item }
+                        else { return nil }
+                    }.compactMap { $0 }
                     return section
                 case .failure(let statusCode):
                     self.errorControl(statusCode: statusCode)
@@ -142,6 +157,20 @@ extension IssueListViewController: UITableViewDelegate {
         headerView.title = self.repoData.fullName
         
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard !(indexPath.row == 4) else { return }
+        let indexRow = indexPath.row > 4 ? indexPath.row - 1 : indexPath.row
+        let data = self.issueArr[indexRow]
+        
+        let issueDetailViewController = IssueDetailViewController()
+        issueDetailViewController.issue = data
+        issueDetailViewController.repoName = self.repoData.fullName
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: self.repoData.fullName, style: .plain, target: self, action: nil)
+        
+        self.navigationController?.pushViewController(issueDetailViewController, animated: true)
     }
 }
 

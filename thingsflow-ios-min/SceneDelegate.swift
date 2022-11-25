@@ -20,7 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let issueListViewController = IssueListViewController()
         issueListViewController.viewModel = IssueListViewModel()
-        window?.rootViewController = issueListViewController
+        
+        let navigationController = UINavigationController(rootViewController: issueListViewController)
+        navigationController.setNavigationBarHidden(true, animated: false)
+        window?.rootViewController = navigationController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

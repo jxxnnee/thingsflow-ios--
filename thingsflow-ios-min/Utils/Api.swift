@@ -33,4 +33,14 @@ struct Api {
             completionHandler(res)
         }
     }
+    func getAnIssue(owner: String, repo: String, number: Int, completionHandler: @escaping (DataResponse<[Issue], AFError>) -> Void) {
+        AF.request(
+            "https://api.github.com/repos/\(owner)/\(repo)/issues/\(number)",
+            method: .get,
+            parameters: nil,
+            headers: ["Accept": "application/vnd.github+json"])
+        .responseDecodable(of: [Issue].self, decoder: self.decoder) { res in
+            completionHandler(res)
+        }
+    }
 }

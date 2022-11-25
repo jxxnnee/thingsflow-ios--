@@ -14,4 +14,5 @@ struct Issue: Codable {
     var body: String?
     var url: String
     var htmlUrl: String
+    var user: Owner
 }
