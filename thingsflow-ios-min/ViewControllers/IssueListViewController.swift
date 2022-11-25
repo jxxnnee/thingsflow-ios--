@@ -19,10 +19,19 @@ class IssueListViewController: UIViewController {
         $0.setTitle("Search", for: .normal)
     }
     fileprivate let tableView = UITableView(frame: .zero, style: .grouped).then {
+        $0.register(IssueListViewCell.self)
         $0.showsVerticalScrollIndicator = false
+        $0.backgroundColor = .clear
+        $0.rowHeight = UITableView.automaticDimension
+        $0.estimatedRowHeight = 100.0
     }
     fileprivate let indicatorView = UIActivityIndicatorView()
-    
+    fileprivate let dataSource = RxTableViewSectionedReloadDataSource<IssueListViewSection>(configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
+        let cell: IssueListViewCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.issue = item
+        
+        return cell
+    })
     
     // MARK: Public
     public var viewModel: IssueListViewModel? {
@@ -34,7 +43,6 @@ class IssueListViewController: UIViewController {
             self.bind(viewModel: viewModel)
         }
     }
-    
     public var disposeBag = DisposeBag()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -54,6 +62,7 @@ extension IssueListViewController {
         self.rx.viewDidLoad
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
+                
                 self.view.backgroundColor = .white
                 self.setViewLayout()
             })
@@ -71,16 +80,53 @@ extension IssueListViewController {
         viewModel.output.repository
             .subscribe(onNext: { [weak self] result in
                 guard let self = self else { return }
-                self.stopIndicator()
+                
                 switch result {
                 case .success(let item):
-                    print(item)
+                    guard let repo = item as? Repo else {
+                        self.stopIndicator()
+                        self.errorAlertView(title: "Error", message: "캐스팅 에러입니다.")
+                        return
+                    }
+                    
+                    let info = Info(organization: repo.owner.login, repository: repo.name)
+                    viewModel.input.getRepoIssues.onNext(info)
                 case .failure(let statusCode):
                     self.errorControl(statusCode: statusCode)
                 }
             })
             .disposed(by: self.disposeBag)
+        
+        viewModel.output.issues
+            .map { [weak self] result -> IssueListViewSection? in
+                guard let self = self else { return nil }
+                
+                switch result {
+                case .success(let section):
+                    guard let section = section as? IssueListViewSection else {
+                        self.errorAlertView(title: "Error", message: "캐스팅 에러입니다.")
+                        return nil
+                    }
+                    
+                    self.stopIndicator()
+                    return section
+                case .failure(let statusCode):
+                    self.errorControl(statusCode: statusCode)
+                    
+                    return nil
+                }
+            }
+            .compactMap { $0 }
+            .map { Array.init(with: $0) }
+            .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
+            .disposed(by: self.disposeBag)
     }
+}
+
+
+
+extension IssueListViewController: UITableViewDelegate {
+    
 }
 
 
@@ -91,6 +137,12 @@ extension IssueListViewController {
         self.view.addSubview(self.searchButton)
         self.searchButton.snp.makeConstraints { make in
             make.top.trailing.equalToSuperViewSafeArea().inset(pixel: 20)
+        }
+        
+        self.view.addSubview(self.tableView)
+        self.tableView.snp.makeConstraints { make in
+            make.top.equalTo(self.searchButton.snp.bottom).offset(pixel: 10)
+            make.leading.trailing.bottom.equalToSuperViewSafeArea()
         }
     }
     fileprivate func startIndicator() {
@@ -139,7 +191,6 @@ extension IssueListViewController {
             }
             let info = Info(organization: organization, repository: repository)
             self.startIndicator()
-            print("Info: ", info)
             viewModel.input.getRepository.onNext(info)
         })
         
@@ -149,6 +200,8 @@ extension IssueListViewController {
         self.present(alertView, animated: true)
     }
     fileprivate func errorAlertView(title: String, message: String) {
+        self.stopIndicator()
+        
         let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "확인", style: .default, handler: nil)
         
